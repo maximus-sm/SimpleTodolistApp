@@ -13,11 +13,14 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
+    
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
+    
     @IBOutlet var topViewHeightConstriant: NSLayoutConstraint!
     @IBOutlet var parentViewMinHeight: NSLayoutConstraint!
+    
     let doneImage = UIImage(systemName: "checkmark.circle");
     let notDoneImage = UIImage(systemName: "circle");
     
@@ -25,16 +28,14 @@ class TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         //layoutSubviews()
         super.awakeFromNib()
-        titleLabel.text = "Home";
-        descriptionLabel.text = "Clean the roomjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
-        timeLabel.text = "14:44";
+//        titleLabel.text = "Home";
+//        descriptionLabel.text = "Clean the roomjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+//        timeLabel.text = "14:44";
         
         doneButton.setImage(notDoneImage, for: .normal);
         doneButton.setImage(doneImage, for: .selected);
         
-        //self.layer.cornerRadius = self.frame.height / 4;
         parentView.layer.cornerRadius = 20;
-        //print(self.frame.height / 6);
         parentView.layer.borderWidth = 2;
         parentView.layer.borderColor = UIColor.systemYellow.cgColor;
         
