@@ -8,30 +8,22 @@
 import UIKit
 import RealmSwift
 
-class MainViewController: UIViewController {
+class MainViewController: RootTableViewDelegate,TableViewCellDelegate {
+    
+    
 
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    var constraint:NSLayoutConstraint?;
-    var expandedIndexSet:IndexSet = IndexSet();
+    
     var timerSet = IndexSet();
-    var cellHeight = 0.0;
-    let borderColor = K.Task.importanceBorderColor;
-    var tasks:Results<Task>?;
     var timer:Timer?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "MainCell")
-        self.tableView.rowHeight = UITableView.automaticDimension;
-        self.tableView.estimatedRowHeight = 150;
-        cellHeight = self.tableView.frame.height/7;
-        //self.tableView.rowHeight = 300;
-        tableView.delegate = self;
-        tableView.dataSource = self;
+        super.setTableView(tableView)
         setButtonMenu();
         
-        
+
         
         //deleteAll()
         
@@ -46,19 +38,20 @@ class MainViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        readAllTasks()
+        super.viewWillAppear(animated)
+        readTasks()
+        //deleteAll()
         setTimer();
         //print(tasks?.count)
     }
     
-
+    
     func setButtonMenu() {
         let titleForTimeBt = "by time";
         let titleForImportanceBt = "by importance"
         let titleForNameBt = "by name"
         
         let actionClosure = { (action: UIAction) in
-            print(action.title)
             switch action.title {
             case titleForNameBt:
                 self.sortTasksBy("title")
@@ -67,9 +60,9 @@ class MainViewController: UIViewController {
             case titleForImportanceBt:
                 self.sortTasksBy("importance")
             default:
-                print("default")
+                self.readTasks()
             }
-            
+            self.setTimer();
         }
     
         var menuElements:[UIMenuElement] = []
@@ -80,29 +73,30 @@ class MainViewController: UIViewController {
         
         sortButton.showsMenuAsPrimaryAction = true
         sortButton.changesSelectionAsPrimaryAction = true
-        
-//        let action1 = UIAction();
-//        let action2 = UIAction();
-       
-        
+    
         
     }
     
     
-    func readAllTasks() -> Bool{
-        
+    func readTasks() -> Bool{
+        let predicate = NSPredicate(format: "isDone == false AND endTime >%@", NSNumber(floatLiteral: Date().timeIntervalSince1970))
         do{
             let realm = try Realm();
             tasks =  realm.objects(Task.self);
+            if let tasks = tasks{
+                self.tasks = tasks.filter(predicate);
+            }
         }catch{
             print("Error reading Task objects")
             return false;
         }
+        tableView.reloadData();
         return true;
     }
     
     
     func deleteAll(){
+        
         do{
 //            let realm = try Realm();
 //            try realm.write {
@@ -116,17 +110,20 @@ class MainViewController: UIViewController {
         }
     }
     
+    
     func sortTasksBy(_ parameter:String) {
+
         do{
-            let realm = try Realm();
-            tasks = realm.objects(Task.self).sorted(byKeyPath: parameter, ascending: true)
-            //tableView.reloadRows(at: tableView.indexPathsForVisibleRows!, with: .fade);
+            if let tasks = tasks {
+                self.tasks = tasks.sorted(byKeyPath: parameter, ascending: true)
+            }
             tableView.reloadData()
         }
         catch{
             print("Error while sorting the realm file \(error.localizedDescription) ")
         }
     }
+    
     
     func setTimer(){
         if(timer != nil) { timer!.invalidate() }
@@ -160,63 +157,15 @@ class MainViewController: UIViewController {
 }
 
 
-// MARK: - Table view data source
-extension MainViewController:UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tasks = tasks{
-            return tasks.count;
-        }else {
-            return 0;
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath)  as! TableViewCell;
-        cell.parentViewMinHeight.constant = cellHeight;
-        cell.parentViewMinHeight.isActive = true;
-        
-        let row = indexPath.row
-        let imprtncVal = tasks![row].importance
-        let borderColor = UIColor.init(hexString: borderColor[imprtncVal]) ?? .white;
-        cell.titleLabel.text = tasks![row].title
-        cell.descriptionLabel.text = tasks![row].descrip
-        cell.layer.borderColor = borderColor.cgColor
-        cell.timeLabel.text = String(tasks![row].time);
-        
-        if(constraint == nil){
-            constraint =  NSLayoutConstraint(item: cell.topView!, attribute:  NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1,  constant: cell.topView.bounds.height);
-            constraint!.priority = UILayoutPriority(999);
-        }
-        
-        if(expandedIndexSet.contains(indexPath.row)){
-            
-            cell.descriptionLabel.numberOfLines = 0;
-            constraint!.isActive = true;
-            cell.topViewHeightConstriant.isActive = false;
-        }else{
-            
-            cell.descriptionLabel.numberOfLines = 1;
-            constraint!.isActive = false;
-            cell.topViewHeightConstriant.isActive = true;
-        }
-        
-        
-        return cell
-        
-    }
-    
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1;
-    }
-    
-    
-}
-
-
 extension MainViewController{
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! TableViewCell
+        cell.delegate = self;
+        return cell;
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -231,24 +180,27 @@ extension MainViewController{
         return swipe;
     }
     
-}
-
-
-// MARK: - TablewView delegate methods
-extension MainViewController:UITableViewDelegate{
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //tableView.deselectRow(at: indexPath, animated: true)
-        
-        if(expandedIndexSet.contains(indexPath.row)){
-            expandedIndexSet.remove(indexPath.row)
-        }else{
-            expandedIndexSet.insert(indexPath.row)
+    func doneButtonPressed(in cell: TableViewCell) {
+        let indexPath = tableView.indexPath(for: cell)!;
+        do{
+            let realm = try Realm();
+            try realm.write{
+                tasks![indexPath.row].isDone = true;
+        }}catch{
+            print("Error updating task object \(error.localizedDescription)")
         }
-        
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        //readTasks();
+        cell.doneButton.isEnabled = false;
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(3), execute: { () -> Void in
+            self.tableView.deleteRows(at: [indexPath], with: .right)
+        })
     }
+    
 }
 
 
-
+protocol TableViewCellDelegate:AnyObject {
+    func doneButtonPressed(in cell: TableViewCell)
+    
+}

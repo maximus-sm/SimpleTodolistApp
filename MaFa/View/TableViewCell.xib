@@ -5,33 +5,32 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainCell" rowHeight="182" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="MaFa" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="553" height="182"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainCell" rowHeight="166" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="MaFa" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="546" height="166"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="553" height="182"/>
+                <rect key="frame" x="0.0" y="0.0" width="546" height="166"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-BM-5Ex">
-                        <rect key="frame" x="15" y="10" width="523" height="172"/>
+                        <rect key="frame" x="15" y="10" width="516" height="156"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mx0-6v-Grk" userLabel="Top View">
-                                <rect key="frame" x="5" y="5" width="513" height="86"/>
+                                <rect key="frame" x="5" y="5" width="506" height="73"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="21" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ilm-IF-M4e">
-                                        <rect key="frame" x="5" y="0.0" width="410.5" height="86"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="31" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ilm-IF-M4e">
+                                        <rect key="frame" x="5" y="0.0" width="405" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ld8-cq-IcV">
-                                        <rect key="frame" x="415.5" y="0.0" width="97.5" height="86"/>
+                                        <rect key="frame" x="410" y="0.0" width="96" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -44,21 +43,27 @@
                                     <constraint firstAttribute="bottom" secondItem="Ld8-cq-IcV" secondAttribute="bottom" id="JBu-kr-jry"/>
                                     <constraint firstItem="Ld8-cq-IcV" firstAttribute="top" secondItem="Mx0-6v-Grk" secondAttribute="top" id="Jnx-yL-Qdq"/>
                                     <constraint firstAttribute="trailing" secondItem="Ld8-cq-IcV" secondAttribute="trailing" id="Tsz-iM-UFX"/>
+                                    <constraint firstAttribute="height" constant="78" id="xhK-mR-mDh"/>
                                     <constraint firstItem="Ld8-cq-IcV" firstAttribute="leading" secondItem="ilm-IF-M4e" secondAttribute="trailing" id="yb7-0S-lfL"/>
                                     <constraint firstAttribute="bottom" secondItem="ilm-IF-M4e" secondAttribute="bottom" id="yyt-4p-SiM"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xhK-mR-mDh"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8b1-lr-4Eo" userLabel="Bottom View">
-                                <rect key="frame" x="5" y="91" width="513" height="76"/>
+                                <rect key="frame" x="5" y="78" width="506" height="73"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x73-Zo-DF3">
-                                        <rect key="frame" x="5" y="0.0" width="410.5" height="76"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" minimumFontSize="24" enabled="NO" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x73-Zo-DF3">
+                                        <rect key="frame" x="5" y="0.0" width="405" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwy-oe-phx">
-                                        <rect key="frame" x="415.5" y="0.0" width="97.5" height="76"/>
+                                        <rect key="frame" x="410" y="0.0" width="96" height="73"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal">
                                             <imageReference key="image" image="circle" catalog="system" symbolScale="large"/>
@@ -81,7 +86,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mx0-6v-Grk" secondAttribute="trailing" constant="5" id="5TW-t5-lX0"/>
                             <constraint firstItem="8b1-lr-4Eo" firstAttribute="top" secondItem="Mx0-6v-Grk" secondAttribute="bottom" id="Fen-yn-9Zo"/>
@@ -90,7 +94,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="172" id="Zab-Br-cKi"/>
                             <constraint firstAttribute="bottom" secondItem="8b1-lr-4Eo" secondAttribute="bottom" constant="5" id="gg0-0Z-aE0"/>
                             <constraint firstItem="8b1-lr-4Eo" firstAttribute="leading" secondItem="Ewq-BM-5Ex" secondAttribute="leading" constant="5" id="kiA-4L-T7y"/>
-                            <constraint firstItem="Mx0-6v-Grk" firstAttribute="height" secondItem="Ewq-BM-5Ex" secondAttribute="height" multiplier="0.5" id="uUC-qE-xab"/>
+                            <constraint firstItem="Mx0-6v-Grk" firstAttribute="height" secondItem="Ewq-BM-5Ex" secondAttribute="height" multiplier="0.5" constant="-5" id="uUC-qE-xab"/>
                             <constraint firstItem="Mx0-6v-Grk" firstAttribute="top" secondItem="Ewq-BM-5Ex" secondAttribute="top" constant="5" id="w2X-Yd-8gl"/>
                         </constraints>
                         <variation key="default">
@@ -119,14 +123,12 @@
                 <outlet property="titleLabel" destination="ilm-IF-M4e" id="pzq-dc-vGg"/>
                 <outlet property="topView" destination="Mx0-6v-Grk" id="LNn-Kx-3KW"/>
                 <outlet property="topViewHeightConstriant" destination="uUC-qE-xab" id="rTs-Xs-ShL"/>
+                <outlet property="topViewMinHeight" destination="xhK-mR-mDh" id="xqA-xK-miy"/>
             </connections>
-            <point key="canvasLocation" x="-192.1875" y="4.225352112676056"/>
+            <point key="canvasLocation" x="-198.75" y="-4.225352112676056"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="circle" catalog="system" width="128" height="123"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

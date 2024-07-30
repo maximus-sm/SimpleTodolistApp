@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5708FCC72C39D4AD0069222F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5708FCC62C39D4AD0069222F /* Task.swift */; };
 		5708FCC92C39DA680069222F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5708FCC82C39DA680069222F /* Constants.swift */; };
+		570A82552C5174B10067CFF5 /* RootTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A82542C5174B10067CFF5 /* RootTableViewDelegate.swift */; };
+		570A82572C5263530067CFF5 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A82562C5263530067CFF5 /* DoneViewController.swift */; };
+		570A82592C52638B0067CFF5 /* ExpiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A82582C52638B0067CFF5 /* ExpiredViewController.swift */; };
 		57424F912C0764C9008A385E /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57424F902C0764C9008A385E /* AddTaskViewController.swift */; };
 		5742964D2C0DB67300465F6A /* CustomHorizontalPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5742964C2C0DB67300465F6A /* CustomHorizontalPickerView.swift */; };
 		57898C322BFD1FF600B213B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57898C312BFD1FF600B213B5 /* AppDelegate.swift */; };
@@ -29,6 +32,9 @@
 		4CDC5528DA94E242D63C5EFA /* Pods_MaFa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaFa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5708FCC62C39D4AD0069222F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		5708FCC82C39DA680069222F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		570A82542C5174B10067CFF5 /* RootTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewDelegate.swift; sourceTree = "<group>"; };
+		570A82562C5263530067CFF5 /* DoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
+		570A82582C52638B0067CFF5 /* ExpiredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiredViewController.swift; sourceTree = "<group>"; };
 		57424F902C0764C9008A385E /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		5742964C2C0DB67300465F6A /* CustomHorizontalPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHorizontalPickerView.swift; sourceTree = "<group>"; };
 		57898C2E2BFD1FF600B213B5 /* MaFa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaFa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,8 +119,11 @@
 			isa = PBXGroup;
 			children = (
 				57898C4C2BFD214200B213B5 /* MainViewController.swift */,
+				570A82562C5263530067CFF5 /* DoneViewController.swift */,
+				570A82582C52638B0067CFF5 /* ExpiredViewController.swift */,
 				57424F902C0764C9008A385E /* AddTaskViewController.swift */,
 				5742964C2C0DB67300465F6A /* CustomHorizontalPickerView.swift */,
+				570A82542C5174B10067CFF5 /* RootTableViewDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -255,10 +264,13 @@
 				57C875052C4AF861009E1165 /* Importance.swift in Sources */,
 				5708FCC72C39D4AD0069222F /* Task.swift in Sources */,
 				57898C322BFD1FF600B213B5 /* AppDelegate.swift in Sources */,
+				570A82572C5263530067CFF5 /* DoneViewController.swift in Sources */,
 				57424F912C0764C9008A385E /* AddTaskViewController.swift in Sources */,
 				57898C502BFD21D300B213B5 /* TableViewCell.swift in Sources */,
+				570A82592C52638B0067CFF5 /* ExpiredViewController.swift in Sources */,
 				57898C4D2BFD214200B213B5 /* MainViewController.swift in Sources */,
 				57898C342BFD1FF600B213B5 /* SceneDelegate.swift in Sources */,
+				570A82552C5174B10067CFF5 /* RootTableViewDelegate.swift in Sources */,
 				5742964D2C0DB67300465F6A /* CustomHorizontalPickerView.swift in Sources */,
 				5708FCC92C39DA680069222F /* Constants.swift in Sources */,
 			);

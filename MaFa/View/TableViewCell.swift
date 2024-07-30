@@ -20,10 +20,12 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet var topViewHeightConstriant: NSLayoutConstraint!
     @IBOutlet var parentViewMinHeight: NSLayoutConstraint!
-    
+    @IBOutlet var topViewMinHeight: NSLayoutConstraint!
     let doneImage = UIImage(systemName: "checkmark.circle");
     let notDoneImage = UIImage(systemName: "circle");
+    let expiredImage = UIImage(systemName: "xmark.circle.fill")
     
+    weak var delegate:TableViewCellDelegate?;
     
     override func awakeFromNib() {
         //layoutSubviews()
@@ -34,6 +36,8 @@ class TableViewCell: UITableViewCell {
         
         doneButton.setImage(notDoneImage, for: .normal);
         doneButton.setImage(doneImage, for: .selected);
+        //doneButton.setImage(expiredImage, for: .disabled)
+       // doneButton.setImage(doneImage, for: .)
         
         parentView.layer.cornerRadius = 20;
         parentView.layer.borderWidth = 2;
@@ -45,15 +49,14 @@ class TableViewCell: UITableViewCell {
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected;
+        delegate?.doneButtonPressed(in: self)        
     }
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-    
     
     
 //    override func layoutSubviews() {

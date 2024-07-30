@@ -61,13 +61,26 @@ class AddTaskViewController: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true;
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false;
+    }
+    
+    
     @IBAction func saveTaskPressed(_ sender: Any) {
         var task = Task.init();
         
         let selectedCategory = categoryData[categoryPicker.selectedRow(inComponent: 0)];
         let selectedTime = timeData[timePicker.selectedRow(inComponent: 0)];
         //revise. Unnessecerily complex logic?
-        let selectedImportance = Importance(rawValue: importancePicker.selectedRow(inComponent: 0))?.rawValue ?? 1;
+        let selectedImportance = importancePicker.selectedRow(inComponent: 0);
+        
         let title = (categoryLabel.text == nil || categoryLabel.text!.count <= 0)  ? selectedCategory : categoryLabel.text;
         let descriptionText = descriptionTextView.text == K.Task.descriptionPlaceholderText ? "" : descriptionTextView.text!;
         
@@ -75,11 +88,7 @@ class AddTaskViewController: UIViewController {
         task.time = selectedTime
         task.importance = selectedImportance
         task.descrip = descriptionText;
-        let t = Date().timeIntervalSince1970
-        task.startTime = t;
-        task.endTime = t + Double(selectedTime * 60 * 60);
-        //print(task.startTime)
-        //print(task.endTime)
+        task.endTime = Date().timeIntervalSince1970 + Double(selectedTime * 60 * 60);
         
         do{
             let realm = try Realm()
