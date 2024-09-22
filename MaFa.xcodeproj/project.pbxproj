@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5708FCC72C39D4AD0069222F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5708FCC62C39D4AD0069222F /* Task.swift */; };
-		5708FCC92C39DA680069222F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5708FCC82C39DA680069222F /* Constants.swift */; };
 		570A82552C5174B10067CFF5 /* RootTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A82542C5174B10067CFF5 /* RootTableViewDelegate.swift */; };
 		570A82572C5263530067CFF5 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A82562C5263530067CFF5 /* DoneViewController.swift */; };
 		570A82592C52638B0067CFF5 /* ExpiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A82582C52638B0067CFF5 /* ExpiredViewController.swift */; };
@@ -22,6 +20,8 @@
 		57898C4D2BFD214200B213B5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57898C4C2BFD214200B213B5 /* MainViewController.swift */; };
 		57898C502BFD21D300B213B5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57898C4E2BFD21D300B213B5 /* TableViewCell.swift */; };
 		57898C512BFD21D300B213B5 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57898C4F2BFD21D300B213B5 /* TableViewCell.xib */; };
+		57B2677F2C7BC6DB000A5864 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B2677E2C7BC6DB000A5864 /* Task.swift */; };
+		57B267812C7BC711000A5864 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B267802C7BC711000A5864 /* Constants.swift */; };
 		57C875052C4AF861009E1165 /* Importance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C875042C4AF861009E1165 /* Importance.swift */; };
 		783FEFA354812067E6C7DA9E /* Pods_MaFa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDC5528DA94E242D63C5EFA /* Pods_MaFa.framework */; };
 /* End PBXBuildFile section */
@@ -30,8 +30,6 @@
 		103F15683AC6284A3EA87402 /* Pods-MaFa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaFa.debug.xcconfig"; path = "Target Support Files/Pods-MaFa/Pods-MaFa.debug.xcconfig"; sourceTree = "<group>"; };
 		2972F0624511578EE781405C /* Pods-MaFa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaFa.release.xcconfig"; path = "Target Support Files/Pods-MaFa/Pods-MaFa.release.xcconfig"; sourceTree = "<group>"; };
 		4CDC5528DA94E242D63C5EFA /* Pods_MaFa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaFa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5708FCC62C39D4AD0069222F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		5708FCC82C39DA680069222F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		570A82542C5174B10067CFF5 /* RootTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewDelegate.swift; sourceTree = "<group>"; };
 		570A82562C5263530067CFF5 /* DoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
 		570A82582C52638B0067CFF5 /* ExpiredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiredViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +45,8 @@
 		57898C4C2BFD214200B213B5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57898C4E2BFD21D300B213B5 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		57898C4F2BFD21D300B213B5 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		57B2677E2C7BC6DB000A5864 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		57B267802C7BC711000A5864 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		57C875042C4AF861009E1165 /* Importance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +91,7 @@
 				57898C3D2BFD1FFA00B213B5 /* Assets.xcassets */,
 				57898C3F2BFD1FFA00B213B5 /* LaunchScreen.storyboard */,
 				57898C422BFD1FFA00B213B5 /* Info.plist */,
-				5708FCC82C39DA680069222F /* Constants.swift */,
+				57B267802C7BC711000A5864 /* Constants.swift */,
 			);
 			path = MaFa;
 			sourceTree = "<group>";
@@ -99,7 +99,7 @@
 		57898C492BFD201600B213B5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5708FCC62C39D4AD0069222F /* Task.swift */,
+				57B2677E2C7BC6DB000A5864 /* Task.swift */,
 				57C875042C4AF861009E1165 /* Importance.swift */,
 			);
 			path = Model;
@@ -262,17 +262,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				57C875052C4AF861009E1165 /* Importance.swift in Sources */,
-				5708FCC72C39D4AD0069222F /* Task.swift in Sources */,
 				57898C322BFD1FF600B213B5 /* AppDelegate.swift in Sources */,
 				570A82572C5263530067CFF5 /* DoneViewController.swift in Sources */,
 				57424F912C0764C9008A385E /* AddTaskViewController.swift in Sources */,
+				57B2677F2C7BC6DB000A5864 /* Task.swift in Sources */,
 				57898C502BFD21D300B213B5 /* TableViewCell.swift in Sources */,
 				570A82592C52638B0067CFF5 /* ExpiredViewController.swift in Sources */,
 				57898C4D2BFD214200B213B5 /* MainViewController.swift in Sources */,
 				57898C342BFD1FF600B213B5 /* SceneDelegate.swift in Sources */,
 				570A82552C5174B10067CFF5 /* RootTableViewDelegate.swift in Sources */,
 				5742964D2C0DB67300465F6A /* CustomHorizontalPickerView.swift in Sources */,
-				5708FCC92C39DA680069222F /* Constants.swift in Sources */,
+				57B267812C7BC711000A5864 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

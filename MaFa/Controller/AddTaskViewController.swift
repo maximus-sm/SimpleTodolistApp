@@ -14,9 +14,14 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var categoryPicker: UIPickerView!
-    @IBOutlet weak var timePicker: UIPickerView!
+    @IBOutlet weak var timePicker: UIPickerView!{didSet{timePicker.layer.borderColor = UIColor.blue.cgColor}}
     @IBOutlet weak var importancePicker: UIPickerView!
-    @IBOutlet var categoryLabel: UITextField!
+    @IBOutlet var categoryTxtField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!{
+        didSet{
+            datePicker.layer.borderColor = UIColor.blue.cgColor
+        }
+    }
     
     @IBOutlet var descriptionTextView: UITextView! {
         didSet{
@@ -33,6 +38,7 @@ class AddTaskViewController: UIViewController {
     let importanceData = K.Task.importance;
     let importanceBorderColor = K.Task.importanceBorderColor;
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +51,10 @@ class AddTaskViewController: UIViewController {
         categoryPicker.delegate = self;
         importancePicker.dataSource = self;
         descriptionTextView.delegate = self;
-        categoryLabel.delegate = self
-    
+        categoryTxtField.delegate = self
+        
+        
+        
 
 //        timePicker.transform = CGAffineTransform(rotationAngle: rotationAngle)
 //        print(timePicker.superview!.frame.width/2)
@@ -64,12 +72,28 @@ class AddTaskViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true;
+        datePicker.minimumDate = Date.init(timeIntervalSinceNow: 24*60*60)
+        datePicker.maximumDate = Date.init(timeIntervalSinceNow: 30*24*60*60)
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false;
+    }
+    
+    
+    @IBAction func timeSelection(_ sender: Any) {
+        dateOrTimePicker(0)
+    }
+    
+    
+    @IBAction func labelEdited(_ sender: UITextField) {
+        if let text = sender.text{
+            if(text.count > 0){
+                categoryLabelOrCategoryPicker(0)
+            }
+        }
     }
     
     
@@ -81,7 +105,7 @@ class AddTaskViewController: UIViewController {
         //revise. Unnessecerily complex logic?
         let selectedImportance = importancePicker.selectedRow(inComponent: 0);
         
-        let title = (categoryLabel.text == nil || categoryLabel.text!.count <= 0)  ? selectedCategory : categoryLabel.text;
+        let title = (categoryTxtField.text == nil || categoryTxtField.text!.count <= 0)  ? selectedCategory : categoryTxtField.text;
         let descriptionText = descriptionTextView.text == K.Task.descriptionPlaceholderText ? "" : descriptionTextView.text!;
         
         task.title = title!;
@@ -114,6 +138,14 @@ class AddTaskViewController: UIViewController {
         bottomView.layer.cornerRadius = 20;
         bottomView.layer.borderColor = UIColor.lightGray.cgColor;
         
+        datePicker.layer.cornerRadius = 10;
+        timePicker.layer.cornerRadius = 10;
+        categoryTxtField.layer.cornerRadius = 10;
+        categoryPicker.layer.cornerRadius = 10;
+        
+        categoryTxtField.layer.borderColor = UIColor.blue.cgColor;
+        categoryPicker.layer.borderColor = UIColor.blue.cgColor;
+        
         descriptionTextView.layer.cornerRadius = 20;
     }
     
@@ -129,7 +161,7 @@ class AddTaskViewController: UIViewController {
 }
 
 
-// MARK: - Picker Views' data source and delegete.
+// MARK: - PickerViews' data source and delegete.
 extension AddTaskViewController:UIPickerViewDataSource, UIPickerViewDelegate{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -157,6 +189,9 @@ extension AddTaskViewController:UIPickerViewDataSource, UIPickerViewDelegate{
             importanceView.layer.borderColor = UIColor.init(hexString: importanceBorderColor[row])?.cgColor;
         case timePicker:
             print("timePicker selected");
+            dateOrTimePicker(1)
+        case categoryPicker:
+            categoryLabelOrCategoryPicker(1)
         default:
             print("asdf")
         }
@@ -209,6 +244,38 @@ extension AddTaskViewController:UIPickerViewDataSource, UIPickerViewDelegate{
             return pickerView.superview!.frame.height * 0.6
         }
         return pickerView.superview!.frame.width * 0.3
+    }
+    
+    
+    func dateOrTimePicker(_ n:Int){
+        let row = timePicker.selectedRow(inComponent: 0)
+        let pickerViewLabel = timePicker.view(forRow: row, forComponent: 0)?.subviews[0] as? UILabel;
+        
+        if(n == 0){
+            datePicker.isSelected = true;
+            datePicker.layer.borderWidth = 2;
+            pickerViewLabel?.textColor = UIColor.black
+        }else if(n == 1){
+            datePicker.isSelected = false;
+            datePicker.layer.borderWidth = 0;
+            pickerViewLabel?.textColor = UIColor.blue
+        }
+    }
+    
+    
+    func categoryLabelOrCategoryPicker(_ n:Int){
+        let row = categoryPicker.selectedRow(inComponent: 0);
+        let pickerViewLabel = (categoryPicker.view(forRow: row, forComponent: 0)?.subviews[0] as? UILabel)
+        
+        if(n == 0){
+            categoryTxtField.isSelected = true;
+            pickerViewLabel?.textColor = UIColor.black;
+            categoryTxtField.layer.borderWidth = 2;
+        }else if(n == 1){
+            categoryTxtField.isSelected = false;
+            categoryTxtField.layer.borderWidth = 0;
+            pickerViewLabel?.textColor = UIColor.blue;
+        }
     }
     
 }

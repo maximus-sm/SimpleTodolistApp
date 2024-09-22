@@ -78,7 +78,7 @@ class MainViewController: RootTableViewDelegate,TableViewCellDelegate {
     }
     
     
-    func readTasks() -> Bool{
+    override func readTasks() -> Bool{
         let predicate = NSPredicate(format: "isDone == false AND endTime >%@", NSNumber(floatLiteral: Date().timeIntervalSince1970))
         do{
             let realm = try Realm();

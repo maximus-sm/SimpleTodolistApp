@@ -86,6 +86,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mx0-6v-Grk" secondAttribute="trailing" constant="5" id="5TW-t5-lX0"/>
                             <constraint firstItem="8b1-lr-4Eo" firstAttribute="top" secondItem="Mx0-6v-Grk" secondAttribute="bottom" id="Fen-yn-9Zo"/>
@@ -104,7 +105,7 @@
                         </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="Ewq-BM-5Ex" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Bhe-qs-bay"/>
                     <constraint firstItem="Ewq-BM-5Ex" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="FmL-LJ-F4c"/>
@@ -113,6 +114,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="bottomView" destination="8b1-lr-4Eo" id="ic5-ot-B7B"/>
                 <outlet property="descriptionLabel" destination="x73-Zo-DF3" id="9IT-Rs-IkR"/>

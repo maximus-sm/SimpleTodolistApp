@@ -21,9 +21,9 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var topViewHeightConstriant: NSLayoutConstraint!
     @IBOutlet var parentViewMinHeight: NSLayoutConstraint!
     @IBOutlet var topViewMinHeight: NSLayoutConstraint!
-    let doneImage = UIImage(systemName: "checkmark.circle");
+    let doneImage = UIImage(systemName: "checkmark.circle")?.withTintColor(.init(hexString:"#006400")!, renderingMode: .alwaysOriginal);
     let notDoneImage = UIImage(systemName: "circle");
-    let expiredImage = UIImage(systemName: "xmark.circle.fill")
+    let expiredImage = UIImage(systemName: "xmark.circle.fill")?.withTintColor(.red,renderingMode: .alwaysOriginal)
     
     weak var delegate:TableViewCellDelegate?;
     
@@ -36,6 +36,7 @@ class TableViewCell: UITableViewCell {
         
         doneButton.setImage(notDoneImage, for: .normal);
         doneButton.setImage(doneImage, for: .selected);
+        
         //doneButton.setImage(expiredImage, for: .disabled)
        // doneButton.setImage(doneImage, for: .)
         

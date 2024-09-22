@@ -38,17 +38,21 @@ class DoneViewController: RootTableViewDelegate {
     }
     
     
-    func readTasks() {
+    override func readTasks() ->Bool{
         let predicate = NSPredicate(format: "isDone == true");
         do{
             let realm = try Realm();
             tasks = realm.objects(Task.self)
             if let tasks = tasks{
                 self.tasks = tasks.filter(predicate);
+            }else{
+                return false;
             }
         }catch{
             print("Error reading tasks in DoneVC \(error.localizedDescription)")
+            return false
         }
         tableView.reloadData();
+        return true;
     }
 }

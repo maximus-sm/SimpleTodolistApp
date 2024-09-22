@@ -17,10 +17,14 @@ class RootTableViewDelegate:UIViewController{
     var expandedIndexSet:IndexSet = IndexSet();
     var minHeightConstraintForExpandingCell:NSLayoutConstraint?;
     let borderColors = K.Task.importanceBorderColor
+    var childTableView:UITableView?
+    let dateFormmater = DateFormatter()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormmater.dateFormat = "MM-dd HH:mm"
+        UISearchBar.appearance().placeholder = "Search in title or in description"
     }
     
     
@@ -36,6 +40,26 @@ class RootTableViewDelegate:UIViewController{
         cellHeight = tableView.frame.height/7;
         tableView.delegate = self;
         tableView.dataSource = self;
+        self.childTableView = tableView;
+    }
+    
+    
+    func readTasks() -> Bool{
+        preconditionFailure("This method must be overridden")
+    }
+    
+    func querryTasks(with predicate:NSPredicate) -> Bool{
+        do{
+            let realm = try Realm();
+            if let filetredTasks = tasks?.filter(predicate){
+                tasks = filetredTasks;
+                childTableView?.reloadData()
+                return true;
+            }
+        }catch{
+            print("Error querrying tasks with given predicate \(predicate.predicateFormat) \(error.localizedDescription)")
+        }
+        return false
     }
     
     
@@ -69,7 +93,7 @@ extension RootTableViewDelegate:UITableViewDataSource{
         cell.titleLabel.text = task.title
         cell.descriptionLabel.text = task.descrip
         cell.parentView.layer.borderColor = borderColor.cgColor
-        cell.timeLabel.text = String(task.time);
+        cell.timeLabel.text = dateFormmater.string(from: Date(timeIntervalSince1970: task.endTime));
         
         cell.parentViewMinHeight.constant = cellHeight;
         cell.parentViewMinHeight.isActive = true;
@@ -124,4 +148,39 @@ extension RootTableViewDelegate:UITableViewDelegate{
         return Int(ceil(CGFloat(labelSize.height) / label.font.lineHeight))
     }
     
+}
+
+
+// MARK: - UISearchBar methods implementation
+extension RootTableViewDelegate:UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text{
+            let predicate = NSPredicate(format:"title CONTAINS[cd] %@ || descrip CONTAINS[cd] %@" , text,text)
+            querryTasks(with: predicate)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = "";
+//        if let mVC = self as? MainViewController{
+//            mVC.readTasks()
+//        }
+        readTasks();
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchBar.text?.count == 0){
+            //        if let mVC = self as? MainViewController{
+            //            mVC.readTasks()
+            //        }
+            readTasks();
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
 }
